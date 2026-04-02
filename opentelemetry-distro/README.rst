@@ -25,7 +25,7 @@ Profiling
 ---------
 
 The ``profiling`` extra installs the
-``opentelemetry-sdk-extension-profiling`` package, which registers an
+``guance-sdk-extension-profiling`` package, which registers an
 ``opentelemetry_pre_instrument`` entry point. Enable it for
 ``opentelemetry-instrument`` with:
 

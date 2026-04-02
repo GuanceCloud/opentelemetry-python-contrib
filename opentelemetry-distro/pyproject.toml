@@ -37,7 +37,7 @@ otlp = [
   "opentelemetry-exporter-otlp == 1.40.0",
 ]
 profiling = [
-  "opentelemetry-sdk-extension-profiling == 0.63b4",
+  "guance-sdk-extension-profiling == 0.63b5",
 ]
 
 [project.entry-points.opentelemetry_configurator]

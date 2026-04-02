@@ -1,5 +1,5 @@
-OpenTelemetry SDK Extension for Python Profiling
-================================================
+Guance SDK Extension for Python Profiling
+=========================================
 
 This package provides a Python profiling runtime for OpenTelemetry
 auto-instrumentation. The current implementation exports profiles via
@@ -17,13 +17,13 @@ Installation
 
 ::
 
-    pip install opentelemetry-sdk-extension-profiling
+    pip install guance-sdk-extension-profiling
 
 or install it through the distro extra:
 
 ::
 
-    pip install opentelemetry-distro[profiling]
+    pip install guance-opentelemetry-distro[profiling]
 
 Usage
 -----
