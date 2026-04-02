@@ -32,6 +32,7 @@ dependencies = [
   "opentelemetry-instrumentation == 0.61b0",
   "opentelemetry-sdk ~= 1.13",
   "opentelemetry-exporter-otlp == 1.40.0",
+  "guance-sdk-extension-profiling == 0.63b5",
 ]
 
 [project.optional-dependencies]

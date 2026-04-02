@@ -14,6 +14,7 @@
 # type: ignore
 
 import os
+from importlib.metadata import distribution
 from unittest import TestCase, mock
 
 from opentelemetry.distro import OpenTelemetryDistro
@@ -41,6 +42,17 @@ class TestDistribution(TestCase):
         self.assertIn(
             "gtrace",
             {entry_point.name for entry_point in console_scripts},
+        )
+
+    def test_base_install_includes_profiling_dependency(self):
+        metadata = distribution("guance-opentelemetry-distro")
+        requires = metadata.requires or []
+        self.assertTrue(
+            any(
+                requirement.startswith("guance-sdk-extension-profiling")
+                and "extra ==" not in requirement
+                for requirement in requires
+            )
         )
 
     @mock.patch.dict("os.environ", {}, clear=True)

@@ -13,7 +13,8 @@ Installation
 
     pip install guance-opentelemetry-distro
 
-To install the distro with Python profiling support:
+The default installation already includes Python profiling support.
+The ``profiling`` extra is kept as a compatibility alias:
 
 ::
 
@@ -34,9 +35,9 @@ auto-instrumented launches:
 Profiling
 ---------
 
-The ``profiling`` extra installs the
-``guance-sdk-extension-profiling`` package, which registers an
-``opentelemetry_pre_instrument`` entry point. Enable it with:
+The base package installs the ``guance-sdk-extension-profiling``
+package, which registers an ``opentelemetry_pre_instrument`` entry
+point. Enable it with:
 
 ::
 
