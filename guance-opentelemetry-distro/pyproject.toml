@@ -3,9 +3,9 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [project]
-name = "opentelemetry-distro"
+name = "guance-opentelemetry-distro"
 dynamic = ["version"]
-description = "OpenTelemetry Python Distro"
+description = "Guance OpenTelemetry Python Distro"
 readme = "README.rst"
 license = "Apache-2.0"
 requires-python = ">=3.9"
@@ -40,6 +40,9 @@ profiling = [
   "opentelemetry-sdk-extension-profiling == 0.62b0.dev",
 ]
 
+[project.scripts]
+gtrace = "opentelemetry.instrumentation.auto_instrumentation:run"
+
 [project.entry-points.opentelemetry_configurator]
 configurator = "opentelemetry.distro:OpenTelemetryConfigurator"
 
@@ -47,7 +50,7 @@ configurator = "opentelemetry.distro:OpenTelemetryConfigurator"
 distro = "opentelemetry.distro:OpenTelemetryDistro"
 
 [project.urls]
-Homepage = "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/opentelemetry-distro"
+Homepage = "https://github.com/open-telemetry/opentelemetry-python-contrib/tree/main/guance-opentelemetry-distro"
 Repository = "https://github.com/open-telemetry/opentelemetry-python-contrib"
 
 [tool.hatch.version]

@@ -8,10 +8,11 @@ dependencies = [
   "opentelemetry-sdk",
   "opentelemetry-semantic-conventions",
   "opentelemetry-instrumentation",
-  "opentelemetry-distro",
+  "guance-opentelemetry-distro",
   "opentelemetry-test-utils",
   "opentelemetry-exporter-prometheus-remote-write",
   "opentelemetry-exporter-richconsole",
+  "opentelemetry-sdk-extension-profiling",
   "opentelemetry-instrumentation-aio-pika[instruments]",
   "opentelemetry-instrumentation-aiohttp-client[instruments]",
   "opentelemetry-instrumentation-aiohttp-server[instruments]",
@@ -83,9 +84,10 @@ opentelemetry-semantic-conventions = { git = "https://github.com/open-telemetry/
 opentelemetry-test-utils = { git = "https://github.com/open-telemetry/opentelemetry-python", branch = "main", subdirectory = "tests/opentelemetry-test-utils" }
 opentelemetry-exporter-otlp = { git = "https://github.com/open-telemetry/opentelemetry-python", branch = "main", subdirectory = "exporter/opentelemetry-exporter-otlp" }
 opentelemetry-instrumentation = { workspace = true }
-opentelemetry-distro = { workspace = true }
+guance-opentelemetry-distro = { workspace = true }
 opentelemetry-exporter-prometheus-remote-write = { workspace = true }
 opentelemetry-exporter-richconsole = { workspace = true }
+opentelemetry-sdk-extension-profiling = { workspace = true }
 opentelemetry-instrumentation-aio-pika = { workspace = true }
 opentelemetry-instrumentation-aiohttp-client = { workspace = true }
 opentelemetry-instrumentation-aiohttp-server = { workspace = true }
@@ -146,7 +148,9 @@ members = [
   "instrumentation/*",
   "instrumentation-genai/*",
   "exporter/*",
+  "sdk-extension/*",
   "opentelemetry-instrumentation",
+  "guance-opentelemetry-distro",
   "opentelemetry-distro",
   "propagator/*",
   "util/*",
