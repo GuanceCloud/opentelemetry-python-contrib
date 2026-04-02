@@ -14,9 +14,9 @@ from uuid import uuid4
 import requests
 
 from opentelemetry.sdk.extension.profiling.environment_variables import (
-    OTEL_PYTHON_PROFILING_PPROF_HEADERS,
-    OTEL_PYTHON_PROFILING_PPROF_PATH,
-    OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL,
+    OTEL_PROFILING_PPROF_HEADERS,
+    OTEL_PROFILING_PPROF_PATH,
+    OTEL_PROFILING_PPROF_UPLOAD_URL,
 )
 from opentelemetry.sdk.extension.profiling.export.result import (
     ProfileExportResult,
@@ -48,7 +48,7 @@ class PPROFHTTPExporter:
         self._timeout = timeout
         self._session = session or requests.Session()
         self._pprof_path = pprof_path or environ.get(
-            OTEL_PYTHON_PROFILING_PPROF_PATH, "otel-profiles"
+            OTEL_PROFILING_PPROF_PATH, "otel-profiles"
         )
         self._service = service
         self._env = env_name
@@ -194,14 +194,14 @@ class PPROFHTTPExporter:
 def _resolve_headers(
     headers: Optional[Dict[str, str]],
 ) -> Dict[str, str]:
-    resolved = _parse_headers(environ.get(OTEL_PYTHON_PROFILING_PPROF_HEADERS, ""))
+    resolved = _parse_headers(environ.get(OTEL_PROFILING_PPROF_HEADERS, ""))
     if headers is not None:
         resolved.update(headers)
     return resolved
 
 
 def _resolve_upload_url() -> str:
-    explicit = environ.get(OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL)
+    explicit = environ.get(OTEL_PROFILING_PPROF_UPLOAD_URL)
     if explicit:
         return explicit
     return f"{_DEFAULT_AGENT_BASE_URL}/{_DEFAULT_AGENT_PATH}"

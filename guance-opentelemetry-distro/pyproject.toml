@@ -36,7 +36,7 @@ dependencies = [
 
 [project.optional-dependencies]
 profiling = [
-  "opentelemetry-sdk-extension-profiling == 0.63b3",
+  "opentelemetry-sdk-extension-profiling == 0.63b4",
 ]
 
 [project.scripts]

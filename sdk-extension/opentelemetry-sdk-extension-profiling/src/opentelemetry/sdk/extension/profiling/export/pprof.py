@@ -4,7 +4,7 @@ import os
 from itertools import count
 
 from opentelemetry.sdk.extension.profiling.environment_variables import (
-    OTEL_PYTHON_PROFILING_PPROF_PATH,
+    OTEL_PROFILING_PPROF_PATH,
 )
 from opentelemetry.sdk.extension.profiling.export.result import (
     ProfileExportResult,
@@ -14,7 +14,7 @@ from opentelemetry.sdk.extension.profiling.export.result import (
 class PPROFProfileExporter:
     def __init__(self, *, directory: str | None = None) -> None:
         self._directory = directory or os.environ.get(
-            OTEL_PYTHON_PROFILING_PPROF_PATH, "otel-profiles"
+            OTEL_PROFILING_PPROF_PATH, "otel-profiles"
         )
         os.makedirs(os.path.dirname(self._directory) or ".", exist_ok=True)
         self._counter = count(0)

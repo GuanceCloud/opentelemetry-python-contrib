@@ -46,20 +46,20 @@ from opentelemetry.sdk.extension.profiling.collector.stack import (
 )
 from opentelemetry.sdk.extension.profiling.context_bridge import ContextBridge
 from opentelemetry.sdk.extension.profiling.environment_variables import (
-    OTEL_PYTHON_PROFILING_EXCEPTION_COLLECT_MESSAGE,
-    OTEL_PYTHON_PROFILING_EXCEPTION_ENABLED,
-    OTEL_PYTHON_PROFILING_EXCEPTION_SAMPLING_INTERVAL,
-    OTEL_PYTHON_PROFILING_EXPORT_INTERVAL,
-    OTEL_PYTHON_PROFILING_EXPORTER,
-    OTEL_PYTHON_PROFILING_INCLUDE_TRACE_CONTEXT,
-    OTEL_PYTHON_PROFILING_LOCK_ENABLED,
-    OTEL_PYTHON_PROFILING_MAX_FRAMES,
-    OTEL_PYTHON_PROFILING_MEMORY_ENABLED,
-    OTEL_PYTHON_PROFILING_MEMORY_IGNORE_PROFILER,
-    OTEL_PYTHON_PROFILING_MEMORY_INTERVAL,
-    OTEL_PYTHON_PROFILING_MEMORY_TOP_STATS,
-    OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL,
-    OTEL_PYTHON_PROFILING_SAMPLE_INTERVAL,
+    OTEL_PROFILING_EXCEPTION_COLLECT_MESSAGE,
+    OTEL_PROFILING_EXCEPTION_ENABLED,
+    OTEL_PROFILING_EXCEPTION_SAMPLING_INTERVAL,
+    OTEL_PROFILING_EXPORT_INTERVAL,
+    OTEL_PROFILING_EXPORTER,
+    OTEL_PROFILING_INCLUDE_TRACE_CONTEXT,
+    OTEL_PROFILING_LOCK_ENABLED,
+    OTEL_PROFILING_MAX_FRAMES,
+    OTEL_PROFILING_MEMORY_ENABLED,
+    OTEL_PROFILING_MEMORY_IGNORE_PROFILER,
+    OTEL_PROFILING_MEMORY_INTERVAL,
+    OTEL_PROFILING_MEMORY_TOP_STATS,
+    OTEL_PROFILING_PPROF_UPLOAD_URL,
+    OTEL_PROFILING_SAMPLE_INTERVAL,
 )
 from opentelemetry.sdk.extension.profiling.export import (
     CompatiblePPROFExporter,
@@ -106,18 +106,18 @@ class Profiler:
     ) -> None:
         self._resource = resource
         self._sample_interval = sample_interval or float(
-            environ.get(OTEL_PYTHON_PROFILING_SAMPLE_INTERVAL, "0.01")
+            environ.get(OTEL_PROFILING_SAMPLE_INTERVAL, "0.01")
         )
         self._export_interval = export_interval or float(
-            environ.get(OTEL_PYTHON_PROFILING_EXPORT_INTERVAL, "60.0")
+            environ.get(OTEL_PROFILING_EXPORT_INTERVAL, "60.0")
         )
         self._max_frames = max_frames or int(
-            environ.get(OTEL_PYTHON_PROFILING_MAX_FRAMES, "64")
+            environ.get(OTEL_PROFILING_MAX_FRAMES, "64")
         )
         self._include_trace_context = (
             _parse_bool(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_INCLUDE_TRACE_CONTEXT, "true"
+                    OTEL_PROFILING_INCLUDE_TRACE_CONTEXT, "true"
                 )
             )
             if include_trace_context is None
@@ -126,7 +126,7 @@ class Profiler:
         self._exception_enabled = (
             _parse_bool(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_EXCEPTION_ENABLED, "false"
+                    OTEL_PROFILING_EXCEPTION_ENABLED, "false"
                 )
             )
             if exception_enabled is None
@@ -136,7 +136,7 @@ class Profiler:
             exception_sampling_interval
             or int(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_EXCEPTION_SAMPLING_INTERVAL,
+                    OTEL_PROFILING_EXCEPTION_SAMPLING_INTERVAL,
                     "100",
                 )
             )
@@ -144,7 +144,7 @@ class Profiler:
         self._exception_collect_message = (
             _parse_bool(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_EXCEPTION_COLLECT_MESSAGE,
+                    OTEL_PROFILING_EXCEPTION_COLLECT_MESSAGE,
                     "false",
                 )
             )
@@ -153,14 +153,14 @@ class Profiler:
         )
         self._lock_enabled = (
             _parse_bool(
-                environ.get(OTEL_PYTHON_PROFILING_LOCK_ENABLED, "false")
+                environ.get(OTEL_PROFILING_LOCK_ENABLED, "false")
             )
             if lock_enabled is None
             else lock_enabled
         )
         self._memory_enabled = (
             _parse_bool(
-                environ.get(OTEL_PYTHON_PROFILING_MEMORY_ENABLED, "false")
+                environ.get(OTEL_PROFILING_MEMORY_ENABLED, "false")
             )
             if memory_enabled is None
             else memory_enabled
@@ -170,7 +170,7 @@ class Profiler:
             if memory_interval is not None
             else float(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_MEMORY_INTERVAL,
+                    OTEL_PROFILING_MEMORY_INTERVAL,
                     str(self._export_interval),
                 )
             )
@@ -179,7 +179,7 @@ class Profiler:
             memory_top_stats
             or int(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_MEMORY_TOP_STATS,
+                    OTEL_PROFILING_MEMORY_TOP_STATS,
                     "200",
                 )
             )
@@ -187,7 +187,7 @@ class Profiler:
         self._memory_ignore_profiler = (
             _parse_bool(
                 environ.get(
-                    OTEL_PYTHON_PROFILING_MEMORY_IGNORE_PROFILER,
+                    OTEL_PROFILING_MEMORY_IGNORE_PROFILER,
                     "true",
                 )
             )
@@ -402,9 +402,9 @@ class Profiler:
 
     @staticmethod
     def _create_exporter_from_env():
-        exporter_name = environ.get(OTEL_PYTHON_PROFILING_EXPORTER)
+        exporter_name = environ.get(OTEL_PROFILING_EXPORTER)
         if exporter_name is None:
-            if environ.get(OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL):
+            if environ.get(OTEL_PROFILING_PPROF_UPLOAD_URL):
                 return CompatiblePPROFExporter()
             return create_otlp_profile_exporter()
 

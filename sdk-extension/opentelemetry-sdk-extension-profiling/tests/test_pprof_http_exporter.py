@@ -14,11 +14,11 @@ def test_pprof_http_exporter_posts_multipart_payload(
     session = Mock()
     session.post.return_value = Mock(status_code=202, text="ok")
     monkeypatch.setenv(
-        "OTEL_PYTHON_PROFILING_PPROF_HEADERS",
+        "OTEL_PROFILING_PPROF_HEADERS",
         "X-API-Key:api-key",
     )
     monkeypatch.setenv(
-        "OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL",
+        "OTEL_PROFILING_PPROF_UPLOAD_URL",
         "http://agent:8126/profiling/v1/input",
     )
     exporter = PPROFHTTPExporter(

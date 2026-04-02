@@ -57,7 +57,7 @@ def test_initialize_loads_profiling_pre_instrument(monkeypatch):
             ]
         return []
 
-    monkeypatch.setenv("OTEL_PYTHON_PROFILING_ENABLED", "true")
+    monkeypatch.setenv("OTEL_PROFILING_ENABLED", "true")
     monkeypatch.setattr(auto_instrumentation, "_load_distro", lambda: distro)
     monkeypatch.setattr(
         auto_instrumentation, "_load_configurators", lambda: None
@@ -100,8 +100,8 @@ def test_run_registers_profiling_environment_variable_arguments(monkeypatch):
     monkeypatch.setattr(auto_instrumentation, "entry_points", fake_entry_points)
     monkeypatch.setattr(auto_instrumentation, "which", lambda command: command)
     monkeypatch.setattr(auto_instrumentation, "execl", fake_execl)
-    monkeypatch.delenv("OTEL_PYTHON_PROFILING_ENABLED", raising=False)
-    monkeypatch.delenv("OTEL_PYTHON_PROFILING_LOCK_ENABLED", raising=False)
+    monkeypatch.delenv("OTEL_PROFILING_ENABLED", raising=False)
+    monkeypatch.delenv("OTEL_PROFILING_LOCK_ENABLED", raising=False)
     monkeypatch.setattr(
         sys,
         "argv",
@@ -122,22 +122,22 @@ def test_run_registers_profiling_environment_variable_arguments(monkeypatch):
     assert captured["executable"] == "python"
     assert captured["args"] == ("python", "-c", "pass")
     assert (
-        profiling_environment_variables.OTEL_PYTHON_PROFILING_ENABLED
+        profiling_environment_variables.OTEL_PROFILING_ENABLED
         in environ
     )
     assert (
-        profiling_environment_variables.OTEL_PYTHON_PROFILING_LOCK_ENABLED
+        profiling_environment_variables.OTEL_PROFILING_LOCK_ENABLED
         in environ
     )
     assert (
         environ[
-            profiling_environment_variables.OTEL_PYTHON_PROFILING_ENABLED
+            profiling_environment_variables.OTEL_PROFILING_ENABLED
         ]
         == "true"
     )
     assert (
         environ[
-            profiling_environment_variables.OTEL_PYTHON_PROFILING_LOCK_ENABLED
+            profiling_environment_variables.OTEL_PROFILING_LOCK_ENABLED
         ]
         == "true"
     )

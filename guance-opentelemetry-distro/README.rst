@@ -40,13 +40,13 @@ The ``profiling`` extra installs the
 
 ::
 
-    export OTEL_PYTHON_PROFILING_ENABLED=true
+    export OTEL_PROFILING_ENABLED=true
     gtrace python app.py
 
-When ``OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL`` is configured and
-``OTEL_PYTHON_PROFILING_EXPORTER`` is unset, profiling defaults to a
+When ``OTEL_PROFILING_PPROF_UPLOAD_URL`` is configured and
+``OTEL_PROFILING_EXPORTER`` is unset, profiling defaults to a
 legacy-compatible ``pprof`` upload layout. Explicit
-``OTEL_PYTHON_PROFILING_*`` settings take precedence.
+``OTEL_PROFILING_*`` settings take precedence.
 
 References
 ----------

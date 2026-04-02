@@ -13,7 +13,7 @@ class _FakeProfiler:
 
 
 def test_auto_start_singleton(monkeypatch):
-    monkeypatch.setenv("OTEL_PYTHON_PROFILING_ENABLED", "true")
+    monkeypatch.setenv("OTEL_PROFILING_ENABLED", "true")
     monkeypatch.setattr(bootstrap, "Profiler", _FakeProfiler)
     bootstrap._profiler = None
     _FakeProfiler.started = 0
@@ -27,7 +27,7 @@ def test_auto_start_singleton(monkeypatch):
 
 
 def test_auto_start_ignores_unset_enable_flag(monkeypatch):
-    monkeypatch.delenv("OTEL_PYTHON_PROFILING_ENABLED", raising=False)
+    monkeypatch.delenv("OTEL_PROFILING_ENABLED", raising=False)
     monkeypatch.setattr(bootstrap, "Profiler", _FakeProfiler)
     bootstrap._profiler = None
     _FakeProfiler.started = 0

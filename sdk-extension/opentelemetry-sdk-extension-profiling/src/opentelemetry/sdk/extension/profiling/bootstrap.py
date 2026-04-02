@@ -19,7 +19,7 @@ from os import environ
 from threading import Lock
 
 from opentelemetry.sdk.extension.profiling.environment_variables import (
-    OTEL_PYTHON_PROFILING_ENABLED,
+    OTEL_PROFILING_ENABLED,
 )
 from opentelemetry.sdk.extension.profiling.runtime import Profiler
 
@@ -62,4 +62,4 @@ def _parse_bool(value: str) -> bool:
 
 
 def _profiling_enabled() -> bool:
-    return _parse_bool(environ.get(OTEL_PYTHON_PROFILING_ENABLED, "false"))
+    return _parse_bool(environ.get(OTEL_PROFILING_ENABLED, "false"))

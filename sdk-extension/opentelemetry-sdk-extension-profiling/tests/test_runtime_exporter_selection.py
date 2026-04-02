@@ -16,9 +16,9 @@ from opentelemetry.sdk.extension.profiling.runtime import Profiler
 def test_runtime_defaults_to_compatible_exporter_for_env_fallback(
     monkeypatch,
 ):
-    monkeypatch.delenv("OTEL_PYTHON_PROFILING_EXPORTER", raising=False)
+    monkeypatch.delenv("OTEL_PROFILING_EXPORTER", raising=False)
     monkeypatch.setenv(
-        "OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL",
+        "OTEL_PROFILING_PPROF_UPLOAD_URL",
         "http://collector:9529/profiling/v1/input",
     )
 
@@ -32,9 +32,9 @@ def test_runtime_explicit_otlp_exporter_overrides_env_fallback(
     monkeypatch,
 ):
     sentinel = object()
-    monkeypatch.setenv("OTEL_PYTHON_PROFILING_EXPORTER", "otlp")
+    monkeypatch.setenv("OTEL_PROFILING_EXPORTER", "otlp")
     monkeypatch.setenv(
-        "OTEL_PYTHON_PROFILING_PPROF_UPLOAD_URL",
+        "OTEL_PROFILING_PPROF_UPLOAD_URL",
         "http://collector:9529/profiling/v1/input",
     )
     monkeypatch.setattr(
