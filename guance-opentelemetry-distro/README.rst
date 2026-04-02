@@ -13,13 +13,6 @@ Installation
 
     pip install guance-opentelemetry-distro
 
-The default installation already includes Python profiling support.
-The ``profiling`` extra is kept as a compatibility alias:
-
-::
-
-    pip install guance-opentelemetry-distro[profiling]
-
 This package provides entrypoints to configure OpenTelemetry.
 
 Command Line
@@ -48,6 +41,38 @@ When ``OTEL_PROFILING_PPROF_UPLOAD_URL`` is configured and
 ``OTEL_PROFILING_EXPORTER`` is unset, profiling defaults to a
 legacy-compatible ``pprof`` upload layout. Explicit
 ``OTEL_PROFILING_*`` settings take precedence.
+
+Common profiling parameters:
+
+* ``OTEL_PROFILING_ENABLED``
+* ``OTEL_PROFILING_EXPORTER`` (``otlp`` or ``pprof``)
+* ``OTEL_PROFILING_SAMPLE_INTERVAL``
+* ``OTEL_PROFILING_EXPORT_INTERVAL``
+* ``OTEL_PROFILING_MAX_FRAMES``
+* ``OTEL_PROFILING_EXCEPTION_ENABLED``
+* ``OTEL_PROFILING_EXCEPTION_SAMPLING_INTERVAL``
+* ``OTEL_PROFILING_EXCEPTION_COLLECT_MESSAGE``
+* ``OTEL_PROFILING_LOCK_ENABLED``
+* ``OTEL_PROFILING_MEMORY_ENABLED``
+* ``OTEL_PROFILING_MEMORY_INTERVAL``
+* ``OTEL_PROFILING_MEMORY_TOP_STATS``
+* ``OTEL_PROFILING_PPROF_PATH``
+* ``OTEL_PROFILING_PPROF_UPLOAD_URL``
+* ``OTEL_PROFILING_PPROF_HEADERS``
+* ``OTEL_EXPORTER_OTLP_PROFILES_PROTOCOL``
+* ``OTEL_EXPORTER_OTLP_PROFILES_ENDPOINT``
+* ``OTEL_EXPORTER_OTLP_PROFILES_HEADERS``
+
+Example:
+
+::
+
+    export OTEL_PROFILING_ENABLED=true
+    export OTEL_PROFILING_EXCEPTION_ENABLED=true
+    export OTEL_PROFILING_LOCK_ENABLED=true
+    export OTEL_PROFILING_MEMORY_ENABLED=true
+    export OTEL_PROFILING_PPROF_UPLOAD_URL=http://localhost:9529/profiling/v1/input
+    gtrace python app.py
 
 References
 ----------
